@@ -62,6 +62,5 @@ def idea(filenames):
  
  
 if __name__ == '__main__':
-    #filenames = ['01.html']
-    filenames = glob.glob('*.html')
+    filenames = glob.glob('html/*.html')
     idea(filenames)
