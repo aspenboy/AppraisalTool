@@ -46,17 +46,18 @@ def idea(filenames):
     ws = wb.add_sheet('This is awesome')
 
     row = 0
+    last_col = 0
     for name, tables in soup_tables.items():
         for table in tables:
             for col, header_cell in enumerate([cell for cell in table.header
-                                               if (cell.get_text(strip=True)
-                                                   and cell.get_text() != 'Description')]):
+                                               if cell.get_text(strip=True)]):
                 ws.write(row, col, header_cell.string)
             row += 1
             for roow in table.rows:
                 for col, cell in enumerate([r for r in roow if r.get_text(strip=True)]):
                     ws.write(row, col, cell.get_text(strip=True))
                 row += 1
+            last_col = col
 
     wb.save('example.xls')
  
